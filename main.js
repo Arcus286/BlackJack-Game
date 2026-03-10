@@ -1,19 +1,43 @@
 let firstCard = 10;
 let secondCard = 4;
+let cards = [firstCard,secondCard];
 let sum = firstCard + secondCard;
 let hasBlackJack = false;
 let isAlive = true;
 let message = "";
+let messaegEl = document.getElementById("message-el");
+let sumEl = document.getElementById("sum-el");
+let cardsEl = document.querySelector("#cards-el");
 
-function startGame() {
+function getRandomCard(){
+  
+}
+
+function startGame(){
+  renderGame();
+}
+
+function renderGame() {
+  sumEl.textContent = "Sum: " + sum;
+  cardsEl.textContent = "Cards: ";
+  for(let i = 0;i<cards.length;i++){
+    cardsEl.textContent += cards[i] +" ";
+  }
   if (sum <= 20) {
-    message = "Do u want to draw a new card? 🙂";
+    message = "Do u want to draw a new card?";
   } else if (sum === 21) {
-    message = "Wohoo! You've got BlackJack 🥳";
+    message = "You've got BlackJack";
     hasBlackJack = true;
   } else {
-    message = "You are out of the game 😭";
+    message = "You are out of the game";
     isAlive = false;
   }
-  console.log(message);
+  messaegEl.textContent = message;
+}
+
+function newCard(){
+  let card = 7;
+  sum += card;
+  cards.push(card);
+  renderGame();
 }
